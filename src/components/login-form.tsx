@@ -89,7 +89,7 @@ const LoginForm = () => {
                         span: 8,
                     }}
                 >
-                    <Button type='link' onClick={handleBack} >Back to Home Page</Button>
+                    <Button type='link' onClick={handleBack}>Back to Home Page</Button>
                 </Form.Item>
             </Form>
         </div >

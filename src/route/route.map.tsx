@@ -14,8 +14,6 @@ export const route: RouteObject[] = [
     {
         path: "/",
         element: <HomePage />,
-        children: [
-        ]
     },
     {
         path: "/admin",

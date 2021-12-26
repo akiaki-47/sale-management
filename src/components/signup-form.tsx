@@ -70,9 +70,9 @@ export const SignUpForm = () => {
                     label="Password"
                     rules={[
                         {
-                            required: true,
-                            min: 6
+                            required: true
                         },
+                        { min: 6 }
                     ]}
                     hasFeedback
                 >
@@ -87,7 +87,6 @@ export const SignUpForm = () => {
                     rules={[
                         {
                             required: true,
-                            min: 6,
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
