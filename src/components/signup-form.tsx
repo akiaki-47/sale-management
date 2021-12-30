@@ -113,9 +113,6 @@ export const SignUpForm = () => {
                 >
                     <InputNumber />
                 </Form.Item>
-                <Form.Item name={['user', 'introduction']} label="Introduction">
-                    <Input.TextArea />
-                </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
                     <Button type="primary" htmlType="submit">
                         Submit
