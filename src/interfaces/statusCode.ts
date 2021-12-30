@@ -1,0 +1,9 @@
+import { StatusCodes } from "http-status-codes";
+export enum StatusCode {
+    CREATED = StatusCodes.CREATED,
+    OK = StatusCodes.OK,
+    BAD_REQUEST = StatusCodes.BAD_REQUEST,
+    UNAUTHORIZED = StatusCodes.UNAUTHORIZED,
+    FORBIDDEN = StatusCodes.FORBIDDEN,
+    NOT_FOUND = StatusCodes.NOT_FOUND,
+}

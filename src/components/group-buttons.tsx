@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-
-function GroupButton() {
+export const GroupButton = () => {
     const navigate = useNavigate();
     const handleLoginWithUser = () => {
         navigate("/user", { replace: true });

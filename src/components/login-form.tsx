@@ -1,26 +1,36 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import useLogin from '../hooks/user/mutations/useLogin';
+import { Role } from '../interfaces';
 import 'antd/dist/antd.css';
-
-interface props {
-    email: string,
-    password: string
+interface LoginForm {
+    email: string;
+    password: string;
 }
-const LoginForm = () => {
-    const onFinish = (values: props) => {
-        alert("Login SUCCESS: " + values.email)
-    };
+export const LoginForm = () => {
+    const { login, role } = useLogin();
+    const navigate = useNavigate();
+    const onFinish = async (dataForm: LoginForm) => {
+        const values = {
+            email: dataForm.email,
+            password: dataForm.password
+        }
+        login(values)
+    }
     const onFinishFailed = (errorInfo: unknown) => {
         if (errorInfo) {
-            alert("Wrong")
+            alert("Email or password is wrong!!");
         }
     };
-    const navigate = useNavigate();
     const handleBack = () => {
         navigate("/", { replace: true });
     };
+
     return (
         <div>
+            {role == Role.USER && <Navigate to="/user" replace={true}></Navigate>}
+            {role == Role.STAFF && <Navigate to="/staff" replace={true}></Navigate>}
+            {role == Role.ADMIN && <Navigate to="/admin" replace={true}></Navigate>}
             <Form
                 name="basic"
                 labelCol={{
@@ -95,5 +105,4 @@ const LoginForm = () => {
         </div >
     )
 }
-
-export default LoginForm
+export default LoginForm;

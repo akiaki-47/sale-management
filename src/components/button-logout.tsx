@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const LogoutSubmit = () => {
@@ -6,8 +7,8 @@ const LogoutSubmit = () => {
         navigate("/", { replace: true });
     }
     return (
-        <button onClick={handleLogout}>Logout</button>
+        <Button type='ghost' onClick={handleLogout}>Logout</Button>
     )
 }
 
-export default LogoutSubmit
+export default LogoutSubmit;

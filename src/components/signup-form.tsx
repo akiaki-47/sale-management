@@ -1,6 +1,8 @@
 import { Button, Form, Input, InputNumber } from "antd";
-import 'antd/dist/antd.css';
 import { useNavigate } from "react-router-dom";
+import { useSignUp } from "../hooks/user/mutations/useSignUp";
+import { Role } from "../interfaces";
+import 'antd/dist/antd.css';
 
 const layout = {
     labelCol: {
@@ -10,6 +12,7 @@ const layout = {
         span: 4,
     },
 };
+
 const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -23,17 +26,27 @@ const validateMessages = {
         min: '${label} must be at least ${min} characters!'
     }
 };
-interface props {
+
+export interface SignUpForm {
     name: string,
     email: string,
     password: string,
     age: number,
-    introduction: string,
 }
+
 export const SignUpForm = () => {
-    const onFinish = (values: props) => {
-        alert("SUCCESS: " + values.email);
+    const { signup } = useSignUp();
+    const onFinish = (values: SignUpForm) => {
+        const signUpForm = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+            role: Role.USER,
+            age: values.age,
+        }
+        signup(signUpForm);
     };
+
     const navigate = useNavigate();
     const handleBack = () => {
         navigate("/", { replace: true });
@@ -43,7 +56,7 @@ export const SignUpForm = () => {
             <h1>Sign Up</h1>
             <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
                 <Form.Item
-                    name={['user', 'name']}
+                    name='name'
                     label="Name"
                     rules={[
                         {
@@ -55,7 +68,7 @@ export const SignUpForm = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'email']}
+                    name='email'
                     label="Email"
                     rules={[
                         {
@@ -101,7 +114,7 @@ export const SignUpForm = () => {
                     <Input.Password />
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'age']}
+                    name='age'
                     label="Age"
                     rules={[
                         {

@@ -1,5 +1,5 @@
 import 'antd/dist/antd.css';
-import { SignUpForm } from "../components/signup-form";
+import { SignUpForm } from '../components/signup-form';
 
 export const SignUpPage = () => {
 
