@@ -10,6 +10,7 @@ interface UpdateProductProps {
 }
 
 export const UpdateProduct = ({ visible, handleCancel, handleOk, product }: UpdateProductProps) => {
+
     return (
         <>
             <Modal
@@ -18,16 +19,16 @@ export const UpdateProduct = ({ visible, handleCancel, handleOk, product }: Upda
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        Return
-                    </Button>,
                     <Button key="submit" type="primary" onClick={handleOk}>
                         Submit
                     </Button>,
+                    <Button key="back" onClick={handleCancel}>
+                        Return
+                    </Button>,
                 ]}
             >
-                <Text>Name</Text>: <Input addonBefore="Name:" />
-                <Text>Description</Text>: <Input defaultValue={product.description} />
+                <Text>Name</Text>: <Input placeholder={product.name} />
+                <Text>Description</Text>: <Input placeholder={product.description} />
             </Modal>
         </>
     )

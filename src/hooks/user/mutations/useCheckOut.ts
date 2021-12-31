@@ -1,8 +1,6 @@
 import { useMutation } from "react-query";
 import { checkOut } from "../../../api/user/check-out";
-import { StatusCode } from "../../../interfaces";
-import { IError } from "../../../interfaces/error";
-import { ICartRequest } from "../../../interfaces/request";
+import { ICartRequest, IError, StatusCode } from "../../../interfaces";
 export const useCheckOut = () => {
     const fetchDataOrder = (cart: ICartRequest) => {
         return checkOut(cart);

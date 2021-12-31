@@ -1,19 +1,20 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table, Space, Button, Popconfirm, message } from 'antd';
 import { ReactChild, ReactFragment, ReactPortal, useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useDeleteProduct } from '../../hooks/product/mutations/useDeleteProduct';
+import { useUpdateProduct } from '../../hooks/product/mutations/useUpdateProduct';
 import { useQueryProduct } from '../../hooks/staff/query/useQueryProduct';
+import { IProduct } from '../../interfaces';
 import { UpdateProduct } from './update-product';
 
 type valueColumnTable =
     boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
 
 // interface ListProductsOfSellerProps {}
-
 export const ListProductsOfSeller: React.FC = () => {
-
+    const WIDTH = 150;
     const { removeProductById } = useDeleteProduct();
+    const { updateProductById } = useUpdateProduct();
     const { data, isLoading } = useQueryProduct();
     const isState = {
         visible: false,
@@ -27,7 +28,8 @@ export const ListProductsOfSeller: React.FC = () => {
         });
     };
 
-    const handleOk = () => {
+    const handleOk = ({ id, name, description }: IProduct) => {
+        updateProductById({ id, name, description });
         setState({ visible: false });
     };
 
@@ -51,14 +53,19 @@ export const ListProductsOfSeller: React.FC = () => {
             key: 'description',
         },
         {
-            width: 150,
+            width: WIDTH,
             title: 'Action',
             key: 'action',
             render: (product: any) => (
                 <Space size="middle">
                     <Button onClick={showModal} icon={<EditOutlined />} type='primary' shape="round"> Edit</Button>
-                    <UpdateProduct product={product} visible={visible} handleOk={handleOk} handleCancel={handleCancel} />
+                    <UpdateProduct product={product} visible={visible}
+                        handleOk={() => handleOk(product)}
+                        handleCancel={handleCancel}
+                    />
+
                     <span>|</span>
+
                     <Popconfirm title="Are you sure？" okText="Yes" cancelText="No"
                         onConfirm={() => onDelete(product.key)}
                         onCancel={() => message.error("failed!")}>

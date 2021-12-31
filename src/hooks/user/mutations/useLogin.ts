@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { checkLogin } from "../../../api/user/login";
 import LoginForm from "../../../components/login-form";
-import { IError, Role } from "../../../interfaces";
-import { IResponseAuth } from "../../../interfaces/response";
+import { IError, IResponseAuth, Role } from "../../../interfaces";
 
 const useLogin = () => {
     const queryClient = useQueryClient();

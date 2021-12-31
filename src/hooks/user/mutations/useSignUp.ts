@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from "react-query";
 import { registerUser } from "../../../api/user/sign-up";
 import { SignUpForm } from "../../../components/signup-form";
-import { IError, IUser } from "../../../interfaces";
-import { IResponse } from "../../../interfaces/response";
+import { IError, IUser, IResponse } from "../../../interfaces";
 export const useSignUp = () => {
     const queryClient = useQueryClient();
 

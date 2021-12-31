@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom"
-import { GroupButton } from "../components/group-buttons"
 
 export const HomePage = () => {
     const navigate = useNavigate();
