@@ -1,6 +1,4 @@
 import { Modal, Button, Input, Form } from 'antd';
-import Text from 'antd/lib/typography/Text';
-import { useState } from 'react';
 import { IProduct } from '../../interfaces';
 
 interface UpdateProductProps {
@@ -10,7 +8,7 @@ interface UpdateProductProps {
     handleCancel: () => void;
 }
 
-export const UpdateProduct = ({ visible, handleCancel, handleOk, product }: UpdateProductProps) => {
+export const UpdateProductModal = ({ visible, handleCancel, handleOk, product }: UpdateProductProps) => {
     console.log(product?.name);
 
     return (

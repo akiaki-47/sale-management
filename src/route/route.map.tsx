@@ -11,11 +11,11 @@ import { EditProfile } from "../screens/user/user-edit-profile";
 import { FormRegister } from "../components/admin/get-form-register";
 import { ManageUser } from "../components/admin/get-all-users";
 import { ListProducts } from "../components/user/list-products";
-import { ListProductsOfSeller } from "../components/staff/list-products";
+import { ListProductsOfSeller } from "../components/staff/list-products-modal";
 import { PostProduct } from "../components/staff/staff-post";
 import { HistoryOrder } from "../components/user/history-order";
 import { Cart } from "../components/user/cart";
-import { UpdateProduct } from "../components/staff/update-product";
+import { UpdateProduct } from "../components/staff/update-product-modal";
 
 export const route: RouteObject[] = [
     {

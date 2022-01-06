@@ -1,6 +1,6 @@
 import { useMutation } from "react-query";
 import { updateProduct } from "../../../api/product/update";
-import { ProductFormUpdate } from "../../../components/staff/list-products";
+import { ProductFormUpdate } from "../../../components/staff/list-products-modal";
 import { IError, IProduct, IResponseProduct } from "../../../interfaces";
 
 export const useUpdateProduct = () => {

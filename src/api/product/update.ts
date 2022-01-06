@@ -1,4 +1,4 @@
-import { ProductFormUpdate } from "../../components/staff/list-products";
+import { ProductFormUpdate } from "../../components/staff/list-products-modal";
 import { instance } from "../server/axios";
 
 export const updateProduct = async ({

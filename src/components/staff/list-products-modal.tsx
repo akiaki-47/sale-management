@@ -1,11 +1,11 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table, Space, Button, Popconfirm, message } from 'antd';
-import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
+import { ReactChild, ReactFragment, ReactPortal, useState } from 'react';
 import { useDeleteProduct } from '../../hooks/product/mutations/useDeleteProduct';
 import { useUpdateProduct } from '../../hooks/product/mutations/useUpdateProduct';
 import { useQueryProduct } from '../../hooks/staff/query/useQueryProduct';
 import { IProduct } from '../../interfaces';
-import { UpdateProduct } from './update-product';
+import { UpdateProductModal } from './update-product-modal';
 
 type valueColumnTable =
     boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
@@ -98,7 +98,7 @@ export const ListProductsOfSeller: React.FC = () => {
                 dataSource={dataTable}
                 pagination={{ position: ['bottomCenter'] }}
             />
-            <UpdateProduct product={productInfo} visible={visible}
+            <UpdateProductModal product={productInfo} visible={visible}
                 handleOk={() => handleOk}
                 handleCancel={handleCancel}
             />
