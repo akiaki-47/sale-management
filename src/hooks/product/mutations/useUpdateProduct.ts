@@ -1,10 +1,13 @@
 import { useMutation } from "react-query";
 import { updateProduct } from "../../../api/product/update";
+import { ProductFormUpdate } from "../../../components/staff/list-products";
 import { IError, IProduct, IResponseProduct } from "../../../interfaces";
 
 export const useUpdateProduct = () => {
-    const fetchDataProduct = ({ id, name, description }: IProduct) => {
-        return updateProduct({ id, name, description });
+    const fetchDataProduct = (product: ProductFormUpdate) => {
+        console.log("id: ", product);
+
+        return updateProduct(product);
     };
 
     const updateProductSuccess = (responseData: IResponseProduct<IProduct>) => {
@@ -14,13 +17,13 @@ export const useUpdateProduct = () => {
     const { mutate, data } = useMutation<
         IResponseProduct<IProduct>,
         IError,
-        IProduct
+        ProductFormUpdate
     >(fetchDataProduct, {
         onSuccess: updateProductSuccess,
     });
 
-    const updateProductById = ({ id, name, description }: IProduct) => {
-        mutate({ id, name, description });
+    const updateProductById = (product: ProductFormUpdate) => {
+        mutate(product);
     };
 
     return { updateProductById, data };

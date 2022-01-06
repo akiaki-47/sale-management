@@ -1,15 +1,17 @@
-import { Modal, Button, Input } from 'antd';
+import { Modal, Button, Input, Form } from 'antd';
 import Text from 'antd/lib/typography/Text';
+import { useState } from 'react';
 import { IProduct } from '../../interfaces';
 
 interface UpdateProductProps {
-    product: IProduct;
+    product: IProduct | undefined;
     visible: boolean;
     handleOk: () => void;
     handleCancel: () => void;
 }
 
 export const UpdateProduct = ({ visible, handleCancel, handleOk, product }: UpdateProductProps) => {
+    console.log(product?.name);
 
     return (
         <>
@@ -27,8 +29,21 @@ export const UpdateProduct = ({ visible, handleCancel, handleOk, product }: Upda
                     </Button>,
                 ]}
             >
-                <Text>Name</Text>: <Input placeholder={product.name} />
-                <Text>Description</Text>: <Input placeholder={product.description} />
+                <Form
+                    name="wrap"
+                    labelCol={{ flex: '110px' }}
+                    labelAlign="left"
+                    wrapperCol={{ flex: 1 }}
+                    colon={false}
+                >
+                    <Form.Item label="Name" name="name" rules={[{ required: true }]}>
+                        <Input defaultValue={product?.name} />
+                    </Form.Item>
+
+                    <Form.Item label="Description" name="description" rules={[{ required: true }]}>
+                        <Input defaultValue={product?.description} />
+                    </Form.Item>
+                </Form>
             </Modal>
         </>
     )

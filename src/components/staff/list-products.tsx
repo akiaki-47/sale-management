@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Table, Space, Button, Popconfirm, message } from 'antd';
-import { ReactChild, ReactFragment, ReactPortal, useState } from 'react';
+import { ReactChild, ReactFragment, ReactPortal, useEffect, useState } from 'react';
 import { useDeleteProduct } from '../../hooks/product/mutations/useDeleteProduct';
 import { useUpdateProduct } from '../../hooks/product/mutations/useUpdateProduct';
 import { useQueryProduct } from '../../hooks/staff/query/useQueryProduct';
@@ -9,6 +9,11 @@ import { UpdateProduct } from './update-product';
 
 type valueColumnTable =
     boolean | ReactChild | ReactFragment | ReactPortal | null | undefined;
+export interface ProductFormUpdate {
+    key: string,
+    name: string,
+    description: string
+}
 
 // interface ListProductsOfSellerProps {}
 export const ListProductsOfSeller: React.FC = () => {
@@ -20,16 +25,20 @@ export const ListProductsOfSeller: React.FC = () => {
         visible: false,
     };
     const [state, setState] = useState(isState);
+    const [productInfo, setProductInfo] = useState<IProduct>();
     const { visible } = state;
 
-    const showModal = () => {
+    const showModal = (product: IProduct) => {
+        setProductInfo(product);
+        console.log("123: ", product);
+
         setState({
             visible: true,
         });
     };
 
-    const handleOk = ({ id, name, description }: IProduct) => {
-        updateProductById({ id, name, description });
+    const handleOk = (productObj: ProductFormUpdate) => {
+        updateProductById(productObj);
         setState({ visible: false });
     };
 
@@ -58,11 +67,7 @@ export const ListProductsOfSeller: React.FC = () => {
             key: 'action',
             render: (product: any) => (
                 <Space size="middle">
-                    <Button onClick={showModal} icon={<EditOutlined />} type='primary' shape="round"> Edit</Button>
-                    <UpdateProduct product={product} visible={visible}
-                        handleOk={() => handleOk(product)}
-                        handleCancel={handleCancel}
-                    />
+                    <Button onClick={() => showModal(product)} icon={<EditOutlined />} type='primary' shape="round"> Edit</Button>
 
                     <span>|</span>
 
@@ -92,6 +97,10 @@ export const ListProductsOfSeller: React.FC = () => {
                 columns={columns}
                 dataSource={dataTable}
                 pagination={{ position: ['bottomCenter'] }}
+            />
+            <UpdateProduct product={productInfo} visible={visible}
+                handleOk={() => handleOk}
+                handleCancel={handleCancel}
             />
         </>
     )
